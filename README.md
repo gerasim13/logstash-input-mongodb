@@ -47,10 +47,10 @@ Example
 ```
 input {
   mongodb {
-    uri => 'mongodb://10.0.0.30/my-logs?ssl=true'
+    uri => 'mongodb://10.0.0.30/my-database?ssl=true'
     placeholder_db_dir => '/opt/logstash-mongodb/'
     placeholder_db_name => 'logstash_sqlite.db'
-    collection => 'events_'
+    collection => 'my-database.collection-name'
     batch_size => 5000
   }
 }
