@@ -38,6 +38,9 @@ class LogStash::Inputs::MongoDB < LogStash::Inputs::Base
   # This allows you to select the type of since info, like "id", "date"
   config :since_type,   :validate => :string, :default => "id"
 
+  # This allows you to delete after insert to elk
+  config :delete_on_insert, :validate => :boolean, :default => false
+
   # The collection to use. Is turned into a regex so 'events' will match 'events_20150227'
   # Example collection: events_20150227 or events_
   config :collection, :validate => :string, :required => true
@@ -371,6 +374,10 @@ class LogStash::Inputs::MongoDB < LogStash::Inputs::Base
             end
 
             @collection_data[index][:last_id] = since_id
+            if @delete_on_insert
+              collection = @mongodb.collection(collection_name)
+              collection.delete_one({"_id" => doc['_id']})
+            end
           end
           # Store the last-seen doc in the database
           update_placeholder(@sqlitedb, since_table, collection_name, @collection_data[index][:last_id])
