@@ -96,15 +96,15 @@ class LogStash::Inputs::MongoDB < LogStash::Inputs::Base
     since = sqlitedb[SINCE_TABLE]
     mongo_collection = mongodb.collection(mongo_collection_name)
 
-    first_entry = mongo_collection.find({}).sort(since_column => 1).limit(1).first
-    first_entry_id = first_entry[since_column]
+    first_entry_id = ''
     if since_type == 'id'
-      first_entry_id = first_entry[since_column].to_s
+      first_entry_id = ''
     elsif since_type == 'time'
-      first_entry_id = first_entry[since_column].to_i
+      first_entry_id = '0'.to_i
     end
     since.insert(:table => "#{since_table}_#{mongo_collection_name}", :place => first_entry_id)
-    @logger.info("init placeholder for #{since_table}_#{mongo_collection_name}: #{first_entry}")
+    @logger.info("init empty placeholder for #{since_table}_#{mongo_collection_name}")
+
     return first_entry_id
   end
 
