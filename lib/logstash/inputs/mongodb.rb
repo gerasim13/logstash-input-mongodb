@@ -178,7 +178,7 @@ class LogStash::Inputs::MongoDB < LogStash::Inputs::Base
     require "jdbc/sqlite3"
     require "sequel"
     placeholder_db_path = File.join(@placeholder_db_dir, @placeholder_db_name)
-    conn = Mongo::Client.new(@uri)
+    conn = Mongo::Client.new(@uri, :connect => :direct)
 
     @host = Socket.gethostname
     @logger.info("Registering MongoDB input")
