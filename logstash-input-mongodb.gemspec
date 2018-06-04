@@ -34,5 +34,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'jdbc-sqlite3', '3.8.10.1'
   s.add_runtime_dependency 'sequel'
   s.add_runtime_dependency 'mongo', '>= 2.0.0'
+  s.add_runtime_dependency 'rufus-scheduler'
   s.add_development_dependency 'logstash-devutils'
 end
