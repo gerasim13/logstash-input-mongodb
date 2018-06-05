@@ -29,10 +29,10 @@ Gem::Specification.new do |s|
 
   # Gem dependencies
   s.add_runtime_dependency 'jdbc-sqlite3', '~> 3.20', '>= 3.20.1'
-  s.add_runtime_dependency 'mongo', '~> 0'
-  s.add_runtime_dependency 'rufus-scheduler', '~> 0'
-  s.add_runtime_dependency 'stud', '~> 0'
-  s.add_runtime_dependency 'sequel', '~> 0'
+  s.add_runtime_dependency 'mongo'
+  s.add_runtime_dependency 'rufus-scheduler'
+  s.add_runtime_dependency 'stud'
+  s.add_runtime_dependency 'sequel'
   s.add_runtime_dependency 'logstash-core-plugin-api', '>= 1.60', '<= 2.99'
   s.add_runtime_dependency 'logstash-core'
   s.add_runtime_dependency 'logstash-codec-plain'
