@@ -46,27 +46,28 @@ dig_dig_fields       [Array]       This provides a second level of hash flatteni
 Example
 ```
 input {
-  mongodb {
-    uri => 'mongodb://10.0.0.30/my-database?ssl=true'
-    placeholder_db_dir => '/opt/logstash-mongodb/'
-    placeholder_db_name => 'logstash_sqlite.db'
-    collection => 'my-database.collection-name'
-    batch_size => 5000
-  }
+    mongodb {
+        uri => "mongodb://srv-15:27017,srv-16:27017/database"
+        placeholder_db_dir => "/var/lib/logstash/"
+        placeholder_db_name => "logstash-input-mongodb-sqlite.db"
+        collection => "foobar"
+        batch_size => 5000
+        since_table => "logstash-since-v1"
+        since_column => "id"
+        since_type => "int"
+        schedule => "* * * * *"
+        parse_method => "simple"
+    }
 }
 
 filter {
-  date {
-    match => [ "logdate", "ISO8601" ]
-  }
+    mutate {
+        remove_field => ["@version", "@timestamp", "_id"]
+    }    
 }
 
 output {
-  redis {
-    host => "localhost"
-    data_type => "list"
-    key => "logstash-mylogs"
-  }
+    stdout { codec => rubydebug }
 }
 ```
 
