@@ -28,8 +28,8 @@ Gem::Specification.new do |s|
   s.metadata = { "logstash_plugin" => "true", "logstash_group" => "input" }
 
   # Gem dependencies
-  s.add_runtime_dependency 'mongo', '~> 2.0', '>= 2.0.0'
-  s.add_runtime_dependency 'jdbc-sqlite3', '~>3.8'
+  s.add_runtime_dependency 'jdbc-sqlite3', '~> 3.8'
+  s.add_runtime_dependency 'mongo', '~> 0'
   s.add_runtime_dependency 'rufus-scheduler', '~> 0'
   s.add_runtime_dependency 'stud', '~> 0'
   s.add_runtime_dependency 'sequel', '~> 0'
