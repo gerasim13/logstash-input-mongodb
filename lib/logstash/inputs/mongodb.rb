@@ -171,7 +171,7 @@ class LogStash::Inputs::MongoDB < LogStash::Inputs::Base
     require "sequel"
     require "rufus/scheduler"
     placeholder_db_path = File.join(@placeholder_db_dir, @placeholder_db_name)
-    conn = Mongo::Client.new(@uri, :connect => :direct, { slave_ok: true })
+    conn = Mongo::Client.new(@uri)
 
     @host = Socket.gethostname
     @logger.info("Registering MongoDB input")
