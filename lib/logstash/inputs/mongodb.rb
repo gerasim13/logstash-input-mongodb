@@ -94,6 +94,7 @@ class LogStash::Inputs::MongoDB < LogStash::Inputs::Base
     since = sqlitedb[SINCE_TABLE]
     mongo_collection = mongodb.collection(mongo_collection_name)
 
+    first_entry = mongo_collection.find({}).sort(since_column => 1).limit(1).first
     first_entry_id = ''
     if since_type == 'int' or since_type == 'time'
       first_entry_id = first_entry[since_column].to_i
