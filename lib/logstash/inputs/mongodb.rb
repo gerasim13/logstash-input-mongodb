@@ -95,7 +95,7 @@ class LogStash::Inputs::MongoDB < LogStash::Inputs::Base
     mongo_collection = mongodb.collection(mongo_collection_name)
 
     first_entry_id = ''
-    if since_type == 'int' or sine_type == 'time'
+    if since_type == 'int' or since_type == 'time'
       first_entry_id = first_entry[since_column].to_i
     else
       first_entry_id = first_entry[since_column].to_s
